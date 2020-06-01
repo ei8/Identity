@@ -5,14 +5,13 @@ EXPOSE 80
 FROM microsoft/dotnet:2.0-sdk AS build
 WORKDIR /src
 COPY ei8-Identity.sln ./
-COPY main/Identity.csproj main/
-RUN dotnet restore -nowarn:msb3202,nu1503
 COPY . .
+RUN dotnet restore ei8-Identity.sln
 WORKDIR /src/main
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app /property:PublishWithAspNetCoreTargetManifest=false
 
 FROM base AS final
 WORKDIR /app

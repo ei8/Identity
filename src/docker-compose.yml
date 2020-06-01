@@ -4,5 +4,5 @@ services:
   identity:
     image: ei8works/identity.api:0.1.6
     build:
-      context: ./main/
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./main/Dockerfile
