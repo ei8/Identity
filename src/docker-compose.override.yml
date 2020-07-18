@@ -7,6 +7,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
-      - /C/ei8/db:/C/db
+      - /C/ei8/identity:/C/db
     ports:
-      - 192.168.8.131:9393:80
+      - 192.168.8.131:60700:80
