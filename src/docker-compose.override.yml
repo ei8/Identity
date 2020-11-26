@@ -9,4 +9,4 @@ services:
     volumes:
       - /C/ei8/identity:/C/db
     ports:
-      - 192.168.8.131:60700:80
+      - 192.168.1.110:61700:80
