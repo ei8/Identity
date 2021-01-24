@@ -8,13 +8,13 @@ using works.ei8.Identity.Models;
 
 namespace works.ei8.Identity
 {
-    internal class TestProfileService : IProfileService
+    internal class UserProfileService : IProfileService
     {
         protected UserManager<ApplicationUser> _userManager;
 
         // https://stackoverflow.com/questions/44761058/how-to-add-custom-claims-to-access-token-in-identityserver4
 
-        public TestProfileService(UserManager<ApplicationUser> userManager)
+        public UserProfileService(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
@@ -23,12 +23,7 @@ namespace works.ei8.Identity
         {
             //>Processing
             var user = await _userManager.GetUserAsync(context.Subject);
-
-            var claims = new List<Claim>
-            {
-                // TODO: confirm if safe to include username in claims
-                // new Claim("user", user.UserName)
-            };
+            var claims = await _userManager.GetClaimsAsync(user);
 
             context.IssuedClaims.AddRange(claims);
         }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 using System;
 using works.ei8.Identity.Data;
 using works.ei8.Identity.Models;
@@ -48,7 +49,7 @@ namespace works.ei8.Identity
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients(this.Configuration.GetSection("Clients")))
                 .AddAspNetIdentity<ApplicationUser>()
-                .AddProfileService<TestProfileService>();
+                .AddProfileService<UserProfileService>();
 
             services.AddAntiforgery(o =>
             {

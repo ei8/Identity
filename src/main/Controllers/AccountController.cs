@@ -234,6 +234,19 @@ namespace works.ei8.Identity.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
+                // Associate the role with the new user 
+                // TODO: await UserManager.AddToRoleAsync(user.Id, model.UserRole);
+                // Create customized claim 
+                var createdUser = await _userManager.FindByIdAsync(user.Id);
+                await _userManager.AddClaimsAsync(
+                    createdUser,
+                    new Claim[]
+                        {
+                            new Claim("email", model.Email),
+                            new Claim("family_name", model.FamilyName),
+                            new Claim("given_name", model.GivenName)
+                        }
+                    );
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

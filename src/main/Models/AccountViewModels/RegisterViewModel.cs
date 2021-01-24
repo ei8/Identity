@@ -8,6 +8,14 @@ namespace works.ei8.Identity.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
+        [Required]        
+        [Display(Name = "Given Name")]
+        public string GivenName { get; set; }
+
+        [Required]
+        [Display(Name = "Family Name")]
+        public string FamilyName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
