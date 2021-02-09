@@ -9,7 +9,7 @@ namespace works.ei8.Identity
     {
         public struct Paths
         {
-            public const string Logout = "/Account/Redirecting";
+            public const string Logout = "/Account/LogoutCallback";
         }
         public struct EnvironmentVariableKeys
         {
